@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | GlamZone</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<style>
+/* ================ MODERN COLOR SCHEME ================ */
+:root {
+  --primary: #5d4e6d; /* Sophisticated purple-gray */
+  --primary-light: #8b7b9d;
+  --primary-dark: #3f3648;
+  --secondary: #c8a97e; /* Warm gold */
+  --accent: #a37b73; /* Muted terracotta */
+  --light: #f8f5f2; /* Warm white */
+  --dark: #2a2628; /* Almost black */
+  --text: #4a4543; /* Soft dark gray */
+  --text-light: #8a8583;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ================ BASE STYLES ================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--light);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(rgba(93, 78, 109, 0.1), rgba(93, 78, 109, 0.1)), 
+              url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+}
+
+/* ================ REGISTER CONTAINER ================ */
+.register-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  animation: fadeInUp 0.8s ease;
+}
+
+.register-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--primary-dark);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.register-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--primary-dark);
+}
+
+.form-group input {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: var(--transition);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(93, 78, 109, 0.1);
+}
+
+.submit-btn {
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background: var(--primary-dark);
+}
+
+.register-container p {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-light);
+}
+
+.register-container a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.register-container a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Loading state for button */
+.submit-btn.loading {
+  position: relative;
+  color: transparent;
+}
+
+.submit-btn.loading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Password mismatch error */
+.error-message {
+  color: #f44336;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================ RESPONSIVE DESIGN ================ */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  
+  .register-container {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 1.5rem;
+  }
+  
+  .register-container h2 {
+    font-size: 1.8rem;
+  }
+}
+</style>
+
+<body>
+  <div class="register-container">
+    <h2>Create Your Account</h2>
+    <form id="registerForm" class="register-form" action="http://localhost:5000/api/register" method="POST">
+      <div class="form-group">
+        <label for="username">Full Name</label>
+        <input type="text" id="username" name="username" placeholder="Enter your full name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Create a password" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+        <div id="password-error" class="error-message">
+          <i class="fas fa-exclamation-circle"></i> Passwords do not match
+        </div>
+      </div>
+      
+      <button type="submit" class="submit-btn">Create Account</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Sign in here</a></p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const registerForm = document.getElementById('registerForm');
+      const passwordError = document.getElementById('password-error');
+      
+      if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          const button = registerForm.querySelector('.submit-btn');
+          
+          if (password !== confirmPassword) {
+            e.preventDefault();
+            passwordError.style.display = 'block';
+            return false;
+          }
+          
+          // Show loading state
+          button.classList.add('loading');
+          button.disabled = true;
+          
+          // Your existing JSON response handling remains unchanged
+          // It will still work with the professional styling
+        });
+        
+        // Validate password match on input
+        document.getElementById('confirm-password').addEventListener('input', function() {
+          const password = document.getElementById('password').value;
+          if (this.value && password !== this.value) {
+            passwordError.style.display = 'block';
+          } else {
+            passwordError.style.display = 'none';
+          }
+        });
+      }
+      
+      // Your existing JSON response interceptor
+      window.addEventListener('load', () => {
+        if (document.body.innerText.trim().startsWith('{')) {
+          try {
+            const data = JSON.parse(document.body.innerText);
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            }
+          } catch (e) {
+            console.error('JSON parse error:', e);
+          }
+        }
+      });
+    });
+  </script>
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlamZone Salon Booking</title>
+  <link rel="stylesheet" href="../style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<style>
+/* ================ MODERN COLOR SCHEME ================ */
+:root {
+  --primary: #5d4e6d; /* Sophisticated purple-gray */
+  --primary-light: #8b7b9d;
+  --primary-dark: #3f3648;
+  --secondary: #c8a97e; /* Warm gold */
+  --accent: #a37b73; /* Muted terracotta */
+  --light: #f8f5f2; /* Warm white */
+  --dark: #2a2628; /* Almost black */
+  --text: #4a4543; /* Soft dark gray */
+  --text-light: #8a8583;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ================ BASE STYLES ================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--light);
+  min-height: 100vh;
+}
+
+/* ================ ELEGANT HEADER ================ */
+header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(rgba(93, 78, 109, 0.9), rgba(93, 78, 109, 0.95)), 
+              url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+  color: var(--light);
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(93, 78, 109, 0.6) 0%, rgba(200, 169, 126, 0.4) 100%);
+  z-index: 0;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ================ NAVIGATION BUTTONS ================ */
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.nav-btn {
+  text-decoration: none;
+  color: var(--light);
+  background-color: var(--secondary);
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: var(--transition);
+  display: inline-block;
+  box-shadow: var(--shadow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.nav-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ================ MAIN CONTENT ================ */
+main {
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+  text-align: center;
+  animation: fadeIn 1s ease-out;
+}
+
+.hero-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-text h2::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 3px;
+  background: var(--secondary);
+  bottom: -10px;
+  left: 25%;
+  border-radius: 3px;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+/* ================ ANIMATIONS ================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================ RESPONSIVE DESIGN ================ */
+@media (max-width: 992px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-text h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 2rem 1rem;
+  }
+  
+  header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .nav-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .nav-btn {
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .hero-text h2 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-text p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-text h2 {
+    font-size: 1.6rem;
+  }
+}
+</style>
+
+<body>
+  <!-- Elegant Header -->
+  <header>
+    <h1>Welcome to GlamZone</h1>
+    <div class="nav-buttons">
+      <a href="#" id="auth-btn" class="nav-btn">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+      <a href="booking.html" class="nav-btn">
+        <i class="fas fa-calendar-alt"></i> Book Appointment
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="hero-text">
+      <h2>Discover Premium Salon Experiences</h2>
+      <p>Book luxury beauty and spa services with our expert stylists. Enjoy personalized treatments in a relaxing environment designed just for you.</p>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check authentication status
+      const user = JSON.parse(localStorage.getItem('user'));
+      const authBtn = document.getElementById('auth-btn');
+      
+      if (user) {
+        // User is logged in
+        authBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+        authBtn.href = '#';
+        authBtn.onclick = function(e) {
+          e.preventDefault();
+          localStorage.removeItem('user');
+          window.location.href = 'login.html';
+        };
+      } else {
+        // User is not logged in
+        authBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+        authBtn.href = 'login.html';
+      }
+
+      // Add animation to heading underline on hover
+      const heading = document.querySelector('.hero-text h2');
+      heading.addEventListener('mouseenter', function() {
+        this.style.animation = 'underlinePulse 2s infinite';
+      });
+      
+      heading.addEventListener('mouseleave', function() {
+        this.style.animation = '';
+      });
+    });
+
+    // Additional animation
+    CSS.registerProperty({
+      name: '--underline-width',
+      syntax: '<length-percentage>',
+      inherits: false,
+      initialValue: '50%'
+    });
+
+    CSS.paintWorklet.addModule(`
+      registerPaint('underline', class {
+        static get inputProperties() { return ['--underline-width']; }
+        paint(ctx, size, props) {
+          const width = props.get('--underline-width').toString();
+          ctx.strokeStyle = '#c8a97e';
+          ctx.lineWidth = 3;
+          ctx.beginPath();
+          ctx.moveTo(size.width * 0.25, size.height);
+          ctx.lineTo(size.width * 0.25 + size.width * parseFloat(width) / 100, size.height);
+          ctx.stroke();
+        }
+      });
+    `);
+  </script>
+</body>
+</html>

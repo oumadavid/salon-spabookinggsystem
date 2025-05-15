@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Salon & Spa Management</title>
+  <style>
+    :root {
+      --primary: #5d4e6d;         /* Sophisticated purple-gray */
+      --primary-light: #8b7b9d;
+      --primary-dark: #3f3648;
+      --secondary: #c8a97e;       /* Warm gold */
+      --accent: #a37b73;          /* Muted terracotta */
+      --light: #f8f5f2;           /* Warm white */
+      --dark: #2a2628;            /* Almost black */
+      --text: #4a4543;            /* Soft dark gray */
+      --text-light: #8a8583;
+      --success: #7d9b76;         /* Muted green */
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: var(--light);
+      padding: 4rem 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--light);
+      clip-path: ellipse(75% 100% at center top);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--light);
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--secondary);
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1') center/cover;
+      height: 60vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin: 3rem 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(93, 78, 109, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: var(--light);
+      max-width: 600px;
+      padding: 0 2rem;
+    }
+
+    .hero-content h2 {
+      color: var(--light);
+      font-size: 2.5rem;
+    }
+
+    .hero-content h2::after {
+      background: var(--secondary);
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-light {
+      background-color: var(--light);
+    }
+
+    .section-dark {
+      background-color: var(--primary-dark);
+      color: var(--light);
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(138, 133, 131, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-img {
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 2rem;
+    }
+
+    .card-content h3 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .team {
+      text-align: center;
+    }
+
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .team-member {
+      background: var(--light);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--secondary);
+      margin-bottom: 1.5rem;
+      filter: grayscale(20%);
+      transition: var(--transition);
+    }
+
+    .team-member:hover img {
+      filter: grayscale(0%);
+    }
+
+    .team-member h3 {
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member p {
+      color: var(--text-light);
+      margin: 0.3rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--light);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(93, 78, 109, 0.2);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    .btn-secondary:hover {
+      background: #d8b883;
+      color: var(--dark);
+    }
+
+    footer {
+      background: var(--primary-dark);
+      color: var(--light);
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+
+    footer {
+      background: var(--primary-dark);
+      color: var(--light);
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>About Our Salon & Spa</h1>
+      <p>Where beauty meets relaxation</p>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Your Oasis of Beauty and Wellness</h2>
+      <p>For over a decade, we've been transforming clients with our exceptional services and unparalleled care</p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2>Our Story</h2>
+    <p>Founded in 2010, our salon began as a small boutique with a big vision - to create a space where clients could experience luxury beauty treatments in a relaxing environment. What started as a single-chair salon has now blossomed into a full-service spa and beauty destination, serving thousands of satisfied clients.</p>
+    
+    <div class="about-cards">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1" alt="Salon Interior">
+        </div>
+        <div class="card-content">
+          <h3>Our Philosophy</h3>
+          <p>We believe beauty should be an experience that nourishes both body and soul. Our treatments are designed to enhance your natural beauty while providing a moment of tranquility in your busy life.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df" alt="Quality Products">
+        </div>
+        <div class="card-content">
+          <h3>Quality Commitment</h3>
+          <p>We use only premium, cruelty-free products from trusted brands. Our team undergoes continuous training to stay at the forefront of beauty and wellness techniques.</p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266" alt="Happy Client">
+        </div>
+        <div class="card-content">
+          <h3>Client-Centered</h3>
+          <p>Your satisfaction is our priority. We take time to understand your needs and customize treatments accordingly. Our loyalty program rewards our valued clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="team">Meet Our Expert Team</h2>
+      <p class="team-subtitle">Certified professionals dedicated to your beauty and wellness</p>
+      
+      <div class="team-members">
+        <div class="team-member">
+          <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Sarah Johnson">
+          <h3>Sarah Johnson</h3>
+          <p>Master Stylist</p>
+          <p>15 years experience specializing in color correction and precision cuts</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Maria Garcia">
+          <h3>Maria Garcia</h3>
+          <p>Spa Director</p>
+          <p>Licensed esthetician with expertise in advanced facial treatments</p>
+        </div>
+        
+        <div class="team-member">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Kim">
+          <h3>David Kim</h3>
+          <p>Nail Specialist</p>
+          <p>Certified nail technician known for intricate nail art designs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div style="text-align: center;">
+      <h2>Experience the Difference</h2>
+      <p>Book your appointment today and discover why we're the preferred choice for beauty and wellness in our community</p>
+      <a href="../booking.html" class="btn">Book Now</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Salon & Spa Management System. All rights reserved.</p>
+      <p>123 Beauty Lane, Cosmopolis | (555) 123-4567 | info@salonspa.com</p>
+    </div>
+  </footer>
+</body>
+</html>

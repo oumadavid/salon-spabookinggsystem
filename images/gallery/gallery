@@ -1,0 +1,28 @@
+<section id="gallery">
+  <h2>Our Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="images/gallery/salon-interior1.jpg" alt="Salon Interior 1">
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery/salon-interior2.jpg" alt="Salon Interior 2">
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery/facial-treatment.jpg" alt="Facial Treatment">
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery/manicure-pedicure.jpg" alt="Manicure & Pedicure">
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery/spa-room.jpg" alt="Spa Room">
+    </div>
+    <div class="gallery-item">
+      <img src="images/gallery/hairstyling.jpg" alt="Hairstyling">
+    </div>
+    <div class="gallery-item">
+        <img src="images/gallery/massage.jpg" alt="Massage Service">
+      </div>
+      <!-- Add more images as needed -->
+    </div>
+  </section>
+  

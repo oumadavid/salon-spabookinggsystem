@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking History</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<style>
+  /* ================ BASE STYLES ================ */
+:root {
+  --primary-color: #6a1b9a;
+  --secondary-color: #9c27b0;
+  --accent-color: #ff9800;
+  --light-color: #f5f5f5;
+  --dark-color: #212121;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --text-color: #333;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #f9f9f9;
+  padding: 20px;
+  padding-top: 80px; /* Space for fixed nav */
+}
+
+nav {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  color: white;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+nav ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ================ BOOKING HISTORY STYLES ================ */
+h2 {
+  text-align: center;
+  margin: 40px 0 30px;
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  position: relative;
+  animation: fadeInDown 0.8s ease;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--accent-color);
+  margin: 15px auto;
+  border-radius: 2px;
+}
+
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: var(--shadow);
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+tr {
+  transition: var(--transition);
+}
+
+tr:not(:first-child):hover {
+  background-color: rgba(106, 27, 154, 0.05);
+  transform: translateX(5px);
+}
+
+td {
+  position: relative;
+}
+
+td::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #eee, transparent);
+}
+
+/* Status badges */
+td:nth-child(3) {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+td:nth-child(3)::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+td:nth-child(3)[data-status="completed"] {
+  color: var(--success-color);
+}
+
+td:nth-child(3)[data-status="completed"]::before {
+  background-color: var(--success-color);
+}
+
+td:nth-child(3)[data-status="upcoming"] {
+  color: var(--warning-color);
+}
+
+td:nth-child(3)[data-status="upcoming"]::before {
+  background-color: var(--warning-color);
+}
+
+td:nth-child(3)[data-status="cancelled"] {
+  color: var(--danger-color);
+}
+
+td:nth-child(3)[data-status="cancelled"]::before {
+  background-color: var(--danger-color);
+}
+
+/* ================ ANIMATIONS ================ */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(106, 27, 154, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(106, 27, 154, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(106, 27, 154, 0);
+  }
+}
+
+/* ================ RESPONSIVE DESIGN ================ */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  table {
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 12px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul {
+    flex-wrap: wrap;
+  }
+  
+  nav ul li {
+    margin: 5px;
+  }
+  
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin: 30px 0 20px;
+  }
+}
+
+/* ================ SPECIAL EFFECTS ================ */
+/* Hover effect for table rows */
+tr:not(:first-child) {
+  position: relative;
+}
+
+tr:not(:first-child)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #eee, transparent);
+  transition: var(--transition);
+}
+
+tr:not(:first-child):hover::after {
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+}
+
+/* No bookings message */
+.no-bookings {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-style: italic;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Loading animation */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.loading::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(106, 27, 154, 0.1);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================ ADDITIONAL ENHANCEMENTS ================ */
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--primary-color);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--accent-color);
+  transform: translateY(-5px);
+  animation: pulse 1.5s infinite;
+}
+</style>
+
+<body>
+  <h2>Booking History</h2>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Service</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>2025-04-20</td>
+      <td>Haircut</td>
+      <td data-status="completed">Completed</td>
+    </tr>
+    <tr>
+      <td>2025-04-25</td>
+      <td>Facial</td>
+      <td data-status="upcoming">Upcoming</td>
+    </tr>
+  </table>
+  <script>
+    // Back to top button functionality
+window.addEventListener('scroll', function() {
+  const backToTop = document.querySelector('.back-to-top') || document.createElement('div');
+  backToTop.className = 'back-to-top';
+  backToTop.innerHTML = '↑';
+  backToTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+  
+  if (!document.querySelector('.back-to-top')) {
+    document.body.appendChild(backToTop);
+  }
+  
+  if (window.pageYOffset > 300) {
+    backToTop.classList.add('visible');
+  } else {
+    backToTop.classList.remove('visible');
+  }
+});
+  </script>
+</body>
+
+</html>
